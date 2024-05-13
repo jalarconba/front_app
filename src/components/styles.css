@@ -1,0 +1,154 @@
+/* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #2401b1;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.tabs {
+  display: flex;
+  background-color: #f4f4f4;
+  padding: 10px 20px;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-right: 10px;
+  background-color: #ddd;
+}
+
+.tab:last-child {
+  margin-right: 0;
+}
+
+.tab:hover {
+  background-color: #ccc;
+}
+
+.tab-content {
+  padding: 20px;
+}
+
+.login-form {
+  width: 300px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-form h2 {
+  margin-top: 0;
+}
+
+.app {
+  margin-top: 20px;
+}
+
+/* Estilos para el contenedor con fondo transparente */
+.container {
+  background-color: #e6e2e2cc; /* Cambiar el color de fondo con opacidad */
+}
+
+.container h1 {
+  color: #3c09d7; /* Cambiar el color del texto dentro del contenedor */
+}
+
+.container p {
+  color: #2904e1; /* Cambiar el color del texto dentro del contenedor */
+}
+
+.home-container {
+  position: relative;
+}
+
+/* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #2401b1;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.tabs {
+  display: flex;
+  background-color: hsla(0, 0%, 2%, 0.888);
+  padding: 10px 20px;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-right: 10px;
+  background-color: #ddd;
+}
+
+.tab:last-child {
+  margin-right: 0;
+}
+
+.tab:hover {
+  background-color: #ccc;
+}
+
+.tab-content {
+  padding: 20px;
+}
+
+.login-form {
+  width: 300px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-form h2 {
+  margin-top: 0;
+}
+
+.app {
+  margin-top: 20px;
+}
+
+/* Estilos para el contenedor con fondo transparente */
+.container {
+  background-color: rgba(240, 236, 236, 0.8); /* Cambiar el color de fondo con opacidad */
+}
+
+.container h1 {
+  color: #3c09d7; /* Cambiar el color del texto dentro del contenedor */
+}
+
+.container p {
+  color: #2904e1; /* Cambiar el color del texto dentro del contenedor */
+}
+
+.home-container {
+  position: relative;
+}
+
+
+
+
+ 

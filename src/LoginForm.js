@@ -34,7 +34,7 @@ function LoginForm() {
   }
   
   const update = () => {
-    Axios.put("http://localhost:3002/update", {
+    Axios.put("http://34.176.116.146:3002/update", {
       id: id,
       rut: rut,
       nombres: nombres, 

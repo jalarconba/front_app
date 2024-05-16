@@ -24,7 +24,7 @@ function Login() {
   };
 
   const getUsuarios = () => {
-    Axios.get("http://localhost:3002/usuarios")
+    Axios.get("http://34.176.116.146:3002/usuarios")
       .then((response) => setUsuarios(response.data))
       .catch((error) => {
         console.error(error);

@@ -1,7 +1,6 @@
-// index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../src/components/styles.css'; // Asegúrate de importar tus estilos aquí
+import '../src/styles.css'; // Asegúrate de importar tus estilos aquí
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importa el archivo CSS de Bootstrap
 

@@ -147,6 +147,28 @@ header {
 .home-container {
   position: relative;
 }
+.bg-custom {
+  background-color: #6c757d; /* Color gris oscuro */
+}
+/* styles.css */
+.btn-primary {
+  width: 200px; /* Ancho fijo para los botones */
+  text-align: center; /* Centrar el texto dentro del botón */
+  background-color: #007bff; /* Fondo azul */
+  color: white; /* Letras blancas */
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Color de fondo al pasar el cursor */
+  color: white; /* Asegurar que las letras sigan siendo blancas */
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+
 
 
 

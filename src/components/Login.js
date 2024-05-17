@@ -16,8 +16,7 @@ function Login() {
       if (user) {
         alert("Inicio de sesión exitoso");
         setLoginError(false);
-        navigate(`/loginform/${username}`); // Redirigir al usuario a la página del formulario de registro de alumnos
-      } else {
+        navigate(`/home'/${username}`); // Redirigir al usuario a la página del Home
         setLoginError(true);
       }
     }
@@ -68,4 +67,3 @@ function Login() {
 }
 
 export default Login;
-

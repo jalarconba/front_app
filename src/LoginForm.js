@@ -12,8 +12,39 @@ function LoginForm() {
   const [curso, setCurso] = useState("");  
   const [editar, setEditar] = useState(false);
   const [alumnosList, setAlumnos] = useState([]);
+  const [rutError, setRutError] = useState("");
+
+  const validarRut = (rut) => {
+    // Eliminar los puntos y guión
+    rut = rut.replace(/[.-]/g, "");
+
+    // Validar largo mínimo y formato
+    if (rut.length < 8 || !/^\d{7,8}[0-9kK]$/.test(rut)) {
+      return false;
+    }
+
+    // Extraer el dígito verificador
+    const dv = rut.slice(-1).toLowerCase();
+    const cuerpo = rut.slice(0, -1);
+
+    // Calcular el dígito verificador esperado
+    let suma = 0;
+    let factor = 2;
+    for (let i = cuerpo.length - 1; i >= 0; i--) {
+      suma += factor * parseInt(cuerpo.charAt(i));
+      factor = factor === 7 ? 2 : factor + 1;
+    }
+    const dvEsperado = 11 - (suma % 11);
+    const dvCalculado = dvEsperado === 11 ? "0" : dvEsperado === 10 ? "k" : dvEsperado.toString();
+
+    return dv === dvCalculado;
+  };
 
   const add = () => {
+    if (!validarRut(rut)) {
+      setRutError("RUT inválido");
+      return;
+    }
     Axios.post("http://localhost:3002/create", {
       rut: rut, 
       nombres: nombres, 
@@ -34,6 +65,10 @@ function LoginForm() {
   }
   
   const update = () => {
+    if (!validarRut(rut)) {
+      setRutError("RUT inválido");
+      return;
+    }
     Axios.put("http://localhost:3002/update", {
       id: id,
       rut: rut,
@@ -67,7 +102,6 @@ function LoginForm() {
       alert("Error al eliminar Alumno");
     });
   }
-  
 
   const getAlumnos = () => {
     Axios.get("http://localhost:3002/alumnos")
@@ -97,141 +131,143 @@ function LoginForm() {
 
   return (
     <div className="container">
-  <div className="App">
-    <div className="card text-center">
-      <div className="card-header">
-        <h1>Control de Asistencia</h1>
-        <h3>Ventana de Registro de Alumno</h3>
-      </div>  
+      <div className="App">
+        <div className="card text-center">
+          <div className="card-header">
+            <h1>Control de Asistencia</h1>
+            <h3>Ventana de Registro de Alumno</h3>
+          </div>  
 
-      <div className="card-body">
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Rut: </span>
-          <input 
-            type="number" 
-            value={rut} 
-            onChange={(event) => setRut(event.target.value)} 
-            className="form-control" 
-            placeholder="Rut" 
-            aria-label="Rut" 
-            aria-describedby="basic-ad" />
-        </div>                         
-        
-        <div className="card-body">
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Nombres: </span>
-            <input 
-              type="text" 
-              onChange={(event) => setNombres(event.target.value)} 
-              className="form-control" 
-              value={nombres}
-              placeholder="Nombres" 
-              aria-label="Nombres" 
-              aria-describedby="basic-ad" />
-          </div>         
-        
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Apellido Paterno: </span>
-            <input 
-              type="text" 
-              onChange={(event) => setApellidoPaterno(event.target.value)} 
-              className="form-control" 
-              value={apellidoPaterno}
-              placeholder="Apellido Paterno" 
-              aria-label="Apellido Paterno" 
-              aria-describedby="basic-ad" />
-          </div> 
-          
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Apellido Materno: </span>
-            <input 
-              type="text" 
-              onChange={(event) => setApellidoMaterno(event.target.value)} 
-              className="form-control" 
-              value={apellidoMaterno}
-              placeholder="Apellido Materno" 
-              aria-label="Apellido Materno" 
-              aria-describedby="basic-ad" />
-          </div>             
-          
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Correo Electrónico: </span>
-            <input 
-              type="email" 
-              onChange={(event) => setCorreoElectronico(event.target.value)} 
-              className="form-control" 
-              value={correoElectronico}
-              placeholder="Correo Electrónico" 
-              aria-label="Correo Electrónico" 
-              aria-describedby="basic-addon2" />
+          <div className="card-body">
+            <div className="input-group mb-3">
+              <span className="input-group-text" id="basic-addon1">Rut: </span>
+              <input 
+                type="text"  
+                onChange={(event) => { setRut(event.target.value); setRutError(""); }}                       
+                className="form-control" 
+                value={rut}
+                placeholder="Rut" 
+                aria-label="Rut" 
+                aria-describedby="basic-ad" />
+              {rutError && <div className="text-danger">{rutError}</div>}
+            </div>
+
+            <div className="card-body">
+              <div className="input-group mb-3">
+                <span className="input-group-text" id="basic-addon1">Nombres: </span>
+                <input 
+                  type="text" 
+                  onChange={(event) => setNombres(event.target.value)} 
+                  className="form-control" 
+                  value={nombres}
+                  placeholder="Nombres" 
+                  aria-label="Nombres" 
+                  aria-describedby="basic-ad" />
+              </div>
+
+              <div className="input-group mb-3">
+                <span className="input-group-text" id="basic-addon1">Apellido Paterno: </span>
+                <input 
+                  type="text" 
+                  onChange={(event) => setApellidoPaterno(event.target.value)} 
+                  className="form-control" 
+                  value={apellidoPaterno}
+                  placeholder="Apellido Paterno" 
+                  aria-label="Apellido Paterno" 
+                  aria-describedby="basic-ad" />
+              </div> 
+
+              <div className="input-group mb-3">
+                <span className="input-group-text" id="basic-addon1">Apellido Materno: </span>
+                <input 
+                  type="text" 
+                  onChange={(event) => setApellidoMaterno(event.target.value)} 
+                  className="form-control" 
+                  value={apellidoMaterno}
+                  placeholder="Apellido Materno" 
+                  aria-label="Apellido Materno" 
+                  aria-describedby="basic-ad" />
+              </div>
+
+              <div className="input-group mb-3">
+                <span className="input-group-text" id="basic-addon1">Correo Electrónico: </span>
+                <input 
+                  type="email" 
+                  onChange={(event) => setCorreoElectronico(event.target.value)} 
+                  className="form-control" 
+                  value={correoElectronico}
+                  placeholder="Correo Electrónico" 
+                  aria-label="Correo Electrónico" 
+                  aria-describedby="basic-addon2" />
+              </div>
+
+              <div className="input-group mb-3">
+                <span className="input-group-text" id="basic-addon1">Curso: </span>
+                <input 
+                  type="text" 
+                  value={curso} 
+                  onChange={(event) => setCurso(event.target.value)} 
+                  className="form-control" 
+                  placeholder="Curso" 
+                  aria-label="Curso" 
+                  aria-describedby="basic-addon2" />
+              </div>
+            </div>
           </div>
-          
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Curso: </span>
-            <input 
-              type="text" 
-              value={curso} 
-              onChange={(event) => setCurso(event.target.value)} 
-              className="form-control" 
-              placeholder="Curso" 
-              aria-label="Curso" 
-              aria-describedby="basic-addon2" />
+
+          <div className="card-footer text-muted">
+            {editar ? (
+              <div>
+                <button className='btn btn-warning m-2' onClick={update}>Actualizar</button>
+                <button className='btn btn-info m-2' onClick={() => setEditar(false)}>Cancelar</button>
+              </div>
+            ) : (
+              <button className='btn btn-success' onClick={add}>Registrar</button>
+            )}
+          </div>
+
+          <div>
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Rut</th>
+                  <th scope="col">Nombres</th>
+                  <th scope="col">Apellido Paterno</th>
+                  <th scope="col">Apellido Materno</th>
+                  <th scope="col">Correo Electrónico</th>
+                  <th scope="col">Curso</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {alumnosList.map((val, key) => (
+                  <tr key={key}>
+                    <th>{key}</th>
+                    <td>{val.rut}</td>
+                    <td>{val.nombres}</td>
+                    <td>{val.apellido_paterno}</td>
+                    <td>{val.apellido_materno}</td>
+                    <td>{val.correo_electronico}</td>
+                    <td>{val.curso}</td>
+                    <td>
+                      <div className="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" onClick={() => editarAlumno(val)} className="btn btn-info">Editar</button>
+                        <button type="button" onClick={() => remove(val.id)} className="btn btn-danger">Eliminar</button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-      
-      <div className="card-footer text-muted">
-        {editar ? (
-          <div>
-            <button className='btn btn-warning m-2' onClick={update}>Actualizar</button>
-            <button className='btn btn-info m-2' onClick={() => setEditar(false)}>Cancelar</button>
-          </div>
-        ) : (
-          <button className='btn btn-success' onClick={add}>Registrar</button>
-        )}
-      </div>
-
-      <div>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Rut</th>
-              <th scope="col">Nombres</th>
-              <th scope="col">Apellido Paterno</th>
-              <th scope="col">Apellido Materno</th>
-              <th scope="col">Correo Electrónico</th>
-              <th scope="col">Curso</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {alumnosList.map((val, key) => (
-              <tr key={key}>
-                <th>{key}</th>
-                <td>{val.rut}</td>
-                <td>{val.nombres}</td>
-                <td>{val.apellido_paterno}</td>
-                <td>{val.apellido_materno}</td>
-                <td>{val.correo_electronico}</td>
-                <td>{val.curso}</td>
-                <td>
-                  <div className="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" onClick={() => editarAlumno(val)} className="btn btn-info">Editar</button>
-                    <button type="button" onClick={() => remove(val.id)} className="btn btn-danger">Eliminar</button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
     </div>
-  </div>
-</div>
   );
 }
 
 export default LoginForm;
+
 
 

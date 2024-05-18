@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Tab from './Tabs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    // Aquí puedes verificar si el usuario está autenticado
-    // Por ejemplo, revisando un token en el almacenamiento local
     const token = localStorage.getItem('token');
     if (token) {
       setIsAuthenticated(true);
@@ -17,12 +16,12 @@ const Header = () => {
   }, []);
 
   const handleLogout = () => {
-    // Aquí puedes manejar el cierre de sesión
-    // Por ejemplo, eliminando el token del almacenamiento local
     localStorage.removeItem('token');
     setIsAuthenticated(false);
     navigate('/');
   };
+
+  const showLogout = location.pathname !== '/';
 
   return (
     <header>
@@ -39,13 +38,14 @@ const Header = () => {
                   <Link className="nav-link text-light" to="/">PAGINA INICIO</Link>
                 </div>
               </li>
-              {!isAuthenticated ? (
+              {!isAuthenticated && showLogout && (
                 <li className="nav-item">
                   <div className="card bg-primary">
                     <Link className="nav-link text-light" to="/login">INICIAR SESIÓN</Link>
                   </div>
                 </li>
-              ) : (
+              )}
+              {isAuthenticated && showLogout && (
                 <li className="nav-item">
                   <div className="card bg-primary">
                     <Link className="nav-link text-light" to="/" onClick={handleLogout}>CERRAR SESIÓN</Link>
@@ -73,4 +73,5 @@ const Header = () => {
 };
 
 export default Header;
+
 

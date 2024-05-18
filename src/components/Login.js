@@ -24,7 +24,7 @@ function Login() {
   };
 
   const getUsuarios = () => {
-    Axios.get("http://localhost:3002/usuarios")
+    Axios.get("https://back-app-u8qv.onrender.com/usuarios")
       .then((response) => setUsuarios(response.data))
       .catch((error) => {
         console.error(error);

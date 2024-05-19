@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Tab from './Tabs';
@@ -50,20 +50,3 @@ const Header = () => {
 };
 
 export default Header;
-=======
-import React from 'react';
-import Tab from './Tabs';
-
-const Header = () => {
-  return (
-    <header>
-      <div className="fa fa-align-center" aria-hidden="true"></div>
-      <h1>Cont-Asist </h1>
-      <h2>Sistema de Registro de Asistencia Escolar</h2>
-      <Tab />
-    </header>
-  );
-};
-
-export default Header;
->>>>>>> e97ba119f95cc2a4a1d71d1fdfca9f583490e8cc

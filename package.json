@@ -7,13 +7,9 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.8",
-<<<<<<< HEAD
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.3",
-    "jsonwebtoken": "^9.0.2",
-=======
-    "bootstrap": "^5.3.3",
->>>>>>> e97ba119f95cc2a4a1d71d1fdfca9f583490e8cc
+  
     "next-auth": "^4.24.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

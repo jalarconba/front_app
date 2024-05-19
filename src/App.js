@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
 import LoginForm from './LoginForm';
 import Header from './components/Header';
@@ -9,10 +9,12 @@ import Home from './components/Home';
 import Registro2 from './components/Registro2';
 import Atrasos from './components/Atrasos';
 
-function App() {
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
+// Componente Footer que se mostrará solo en la página principal
+function MainFooter() {
+  return <Footer />;
+}
 
+function App() {
   return (
     <Router>
       <Header />
@@ -22,13 +24,15 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/registro2" element={<Registro2 />} />
         <Route path="/atrasos" element={<Atrasos />} />
-        <Route path="/" element={isHomePage && <Footer />} /> {/* Mostrar el footer solo en la página principal */}
       </Routes>
+      <MainFooter /> {/* Mostrar el footer en todas las rutas */}
     </Router>
   );
 }
 
 export default App;
+
+
 
 
 

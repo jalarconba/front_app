@@ -1,39 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Login() {
   const [password, setPassword] = useState("");   
-  const [usuariosList, setUsuarios] = useState([]);
   const [username, setUsername] = useState("");
   const [loginError, setLoginError] = useState(false);
   const navigate = useNavigate();
-  
-  const handleLogin = () => {
-    if (usuariosList) {
-      const user = usuariosList.find((usuario) => usuario.login === username && usuario.password === password);
-      if (user) {
-        alert("Inicio de sesión exitoso");
-        setLoginError(false);
-        navigate(`/home`); // Redirigir al usuario a la página del Home
-        setLoginError(true);
-      }
+
+  const handleLogin = async () => {
+    try {
+      const response = await Axios.post("http://localhost:3002/login", { username, password });
+      localStorage.setItem('token', response.data.token);
+      alert("Inicio de sesión exitoso");
+      setLoginError(false);
+      navigate(`/home`);
+    } catch (error) {
+      console.error(error);
+      setLoginError(true);
     }
   };
-
-  const getUsuarios = () => {
-    Axios.get("http://localhost:3002/usuarios")
-      .then((response) => setUsuarios(response.data))
-      .catch((error) => {
-        console.error(error);
-        alert("Error al obtener usuarios");
-      });
-  };
-
-  useEffect(() => {
-    getUsuarios();
-  }, []);
 
   return (
     <div className="container mt-5">
@@ -67,3 +54,4 @@ function Login() {
 }
 
 export default Login;
+

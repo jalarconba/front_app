@@ -42,7 +42,7 @@ function LoginForm() {
       setRutError("RUT inválido");
       return;
     }
-    Axios.post("http://localhost:3002/create", {
+    Axios.post("https://back-app-u8qv.onrender.com/alumnos", {
       rut,
       nombres,
       apellido_paterno: apellidoPaterno,
@@ -63,7 +63,7 @@ function LoginForm() {
     })
     .catch((error) => {
       console.error(error);
-      alert("Error al registrar estudiante");
+      alert("Error al registrar Alumno");
     });
   };
 
@@ -72,7 +72,7 @@ function LoginForm() {
       setRutError("RUT inválido");
       return;
     }
-    Axios.put("http://localhost:3002/update", {
+    Axios.put("https://back-app-u8qv.onrender.com/alumnos", {
       id,
       rut,
       nombres,
@@ -87,7 +87,7 @@ function LoginForm() {
       limpiarCampos();
       Swal.fire({
         title: "<strong>Actualización Exitosa</strong>",
-        html: `<i>El alumno <strong>${nombres}</strong> fue actualizado con éxito </i>`,
+        html: `<i>El alumno <strong>${nombres} & ${apellidoPaterno}</strong> fue actualizado con éxito </i>`,
         icon: 'success',
         timer: 3000
       });
@@ -99,7 +99,7 @@ function LoginForm() {
   };
 
   const remove = (id) => {
-    Axios.delete(`http://localhost:3002/delete/${id}`)
+    Axios.delete(`https://back-app-u8qv.onrender.com/alumnos/${id}`)
     .then((response) => {
       getAlumnos();
       alert("Alumno eliminado");
@@ -109,8 +109,8 @@ function LoginForm() {
       limpiarCampos();
       Swal.fire({
         title: "<strong>Eliminar Exitoso</strong>",
-        html: `<i>El estudiante <strong>${nombres}${apellidoPaterno}</strong> fue eliminado con éxito </i>`,
-        icon: 'success',
+        
+        html: `<i>El estudiante <strong>${nombres} ${apellidoPaterno} ${apellidoMaterno}</strong> fue eliminado con éxito </i>`,
         timer: 3000
       });
     })
@@ -121,7 +121,7 @@ function LoginForm() {
   };
 
   const getAlumnos = () => {
-    Axios.get("http://localhost:3002/alumnos")
+    Axios.get("https://back-app-u8qv.onrender.com/alumnos")
     .then((response) => {
       setAlumnos(response.data);
     })

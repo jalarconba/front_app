@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,3 +23,25 @@ export default Home;
 
 
 
+=======
+import React from 'react';
+import backgroundImage from '../img/img.jpg'; // Importa la imagen de fondo
+
+const Home = () => {
+  return (
+    <div className="home-container">
+      <div className="background-image" style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <div className="content text-center text-light py-3">
+          <h2 className="mb-0">Bienvenidos</h2>
+          {/* Contenido adicional de la página de inicio */}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Home;
+
+
+
+>>>>>>> e97ba119f95cc2a4a1d71d1fdfca9f583490e8cc

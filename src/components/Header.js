@@ -1,28 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import Tab from './Tabs';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Header = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setIsAuthenticated(true);
-    }
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsAuthenticated(false);
-    navigate('/');
-  };
-
-  const showLogout = location.pathname !== '/';
-
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,28 +18,24 @@ const Header = () => {
                   <Link className="nav-link text-light" to="/">PAGINA INICIO</Link>
                 </div>
               </li>
-              {!isAuthenticated && showLogout && (
-                <li className="nav-item">
-                  <div className="card bg-primary">
-                    <Link className="nav-link text-light" to="/login">INICIAR SESIÓN</Link>
-                  </div>
-                </li>
-              )}
-              {isAuthenticated && showLogout && (
-                <li className="nav-item">
-                  <div className="card bg-primary">
-                    <Link className="nav-link text-light" to="/" onClick={handleLogout}>CERRAR SESIÓN</Link>
-                  </div>
-                </li>
-              )}
               <li className="nav-item">
                 <div className="card bg-primary">
-                  <Link className="nav-link text-light" to="/quienes_somos">QUIENES SOMOS</Link>
+                  <Link className="nav-link text-light" to="/login">LOGIN</Link>
+                </div>
+              </li>
+              <li className="nav-item">
+                <div className="card bg-primary">
+                  <Link className="nav-link text-light" to="/home">VOLVER</Link>
                 </div>
               </li>
               <li className="nav-item">
                 <div className="card bg-primary">
                   <Link className="nav-link text-light" to="/contact">CONTACTO</Link>
+                </div>
+              </li>
+              <li className="nav-item">
+                <div className="card bg-secondary">
+                  <Link className="nav-link text-light" to="/">CERRAR SESIÓN</Link>
                 </div>
               </li>
             </ul>
@@ -73,5 +49,3 @@ const Header = () => {
 };
 
 export default Header;
-
-

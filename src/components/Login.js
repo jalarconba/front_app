@@ -16,7 +16,7 @@ function Login() {
       if (user) {
         alert("Inicio de sesión exitoso");
         setLoginError(false);
-        navigate(`/home'/${username}`); // Redirigir al usuario a la página del Home
+        navigate(`/home`); // Redirigir al usuario a la página del Home
         setLoginError(true);
       }
     }

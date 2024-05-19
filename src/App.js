@@ -6,15 +6,18 @@ import LoginForm from './LoginForm';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
-
+import Registro2 from './components/Registro2'; // Asegúrate de que la ruta sea correcta
+import Atrasos from './components/Atrasos';
 function App() {
   return (
     <Router>
-      <Header /> {/* Agregar el componente Navbar */}
+      <Header /> 
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/loginform/:username" element={<LoginForm />} />
-        <Route path="/home" element={<Home />} /> {/* Ruta para la página principal */}
+        <Route path="/loginform" element={<LoginForm />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/registro2" element={<Registro2 />} />
+        <Route path="/atrasos" element={<Atrasos />} />
       </Routes>
       <Footer />
     </Router>
@@ -22,5 +25,6 @@ function App() {
 }
 
 export default App;
+
 
 

@@ -42,7 +42,7 @@ function LoginForm() {
       setRutError("RUT inválido");
       return;
     }
-    Axios.post("http://localhost:3002/create", {
+    Axios.post("https://back-app-u8qv.onrender.com/create", {
       rut,
       nombres,
       apellido_paterno: apellidoPaterno,
@@ -72,7 +72,7 @@ function LoginForm() {
       setRutError("RUT inválido");
       return;
     }
-    Axios.put("http://localhost:3002/update", {
+    Axios.put("https://back-app-u8qv.onrender.com/update", {
       id,
       rut,
       nombres,
@@ -99,7 +99,7 @@ function LoginForm() {
   };
 
   const remove = (id) => {
-    Axios.delete(`http://localhost:3002/delete/${id}`)
+    Axios.delete(`https://back-app-u8qv.onrender.com/delete/${id}`)
     .then((response) => {
       getAlumnos();
       alert("Alumno eliminado");
@@ -121,7 +121,7 @@ function LoginForm() {
   };
 
   const getAlumnos = () => {
-    Axios.get("http://localhost:3002/alumnos")
+    Axios.get("https://back-app-u8qv.onrender.com/alumnos")
     .then((response) => {
       setAlumnos(response.data);
     })

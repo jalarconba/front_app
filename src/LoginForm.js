@@ -42,7 +42,11 @@ function LoginForm() {
       setRutError("RUT inválido");
       return;
     }
+<<<<<<< HEAD
     Axios.post("https://back-app-u8qv.onrender.com/alumnos", {
+=======
+    Axios.post("https://back-app-u8qv.onrender.com/create", {
+>>>>>>> 9d70e5545a85a31a2dc862ae375d7d9f83ca1b85
       rut,
       nombres,
       apellido_paterno: apellidoPaterno,
@@ -72,7 +76,11 @@ function LoginForm() {
       setRutError("RUT inválido");
       return;
     }
+<<<<<<< HEAD
     Axios.put("https://back-app-u8qv.onrender.com/alumnos", {
+=======
+    Axios.put("https://back-app-u8qv.onrender.com/update", {
+>>>>>>> 9d70e5545a85a31a2dc862ae375d7d9f83ca1b85
       id,
       rut,
       nombres,
@@ -99,7 +107,11 @@ function LoginForm() {
   };
 
   const remove = (id) => {
+<<<<<<< HEAD
     Axios.delete(`https://back-app-u8qv.onrender.com/alumnos/${id}`)
+=======
+    Axios.delete(`https://back-app-u8qv.onrender.com/delete/${id}`)
+>>>>>>> 9d70e5545a85a31a2dc862ae375d7d9f83ca1b85
     .then((response) => {
       getAlumnos();
       alert("Alumno eliminado");

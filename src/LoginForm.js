@@ -72,30 +72,31 @@ function LoginForm() {
       setRutError("RUT inválido");
       return;
     }
-    Axios.put("https://back-app-u8qv.onrender.com/alumnos", {
-      id,
-      rut,
-      nombres,
-      apellido_paterno: apellidoPaterno,
-      apellido_materno: apellidoMaterno,
-      correo_electronico: correoElectronico,
-      fecha_nacimiento: fechaNacimiento,
-      curso
-    })
-    .then(() => {
-      getAlumnos();
-      limpiarCampos();
-      Swal.fire({
-        title: "<strong>Actualización Exitosa</strong>",
-        html: `<i>El alumno <strong>${nombres} & ${apellidoPaterno}</strong> fue actualizado con éxito </i>`,
-        icon: 'success',
-        timer: 3000
+
+    Axios.put(`https://back-app-u8qv.onrender.com/alumnos/${id}`, {
+        id,
+        rut,
+        nombres,
+        apellido_paterno: apellidoPaterno,
+        apellido_materno: apellidoMaterno,
+        correo_electronico: correoElectronico,
+        fecha_nacimiento: fechaNacimiento,
+        curso
+      })
+      .then(() => {
+        getAlumnos();
+        limpiarCampos();
+        Swal.fire({
+          title: "<strong>Actualización Exitosa</strong>",
+          html: `<i>El alumno <strong>${nombres} ${apellidoPaterno} ${apellidoMaterno}</strong> fue actualizado con éxito </i>`,
+          icon: 'success',
+          timer: 3000
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Error al actualizar estudiante");
       });
-    })
-    .catch((error) => {
-      console.error(error);
-      alert("Error al actualizar estudiante");
-    });
   };
 
   const remove = (id) => {

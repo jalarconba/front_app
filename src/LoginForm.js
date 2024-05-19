@@ -104,9 +104,19 @@ function LoginForm() {
       getAlumnos();
       alert("Alumno eliminado");
     })
+    .then(() => {
+      getAlumnos();
+      limpiarCampos();
+      Swal.fire({
+        title: "<strong>Eliminar Exitoso</strong>",
+        html: `<i>El estudiante <strong>${nombres}${apellidoPaterno}</strong> fue eliminado con éxito </i>`,
+        icon: 'success',
+        timer: 3000
+      });
+    })
     .catch((error) => {
-      console.error("Error al eliminar alumno:", error);
-      alert("Error al eliminar alumno");
+      console.error(error);
+      alert("Error al registrar estudiante");
     });
   };
 

@@ -18,13 +18,13 @@ function Login() {
 
     try {
       // Envía la solicitud al servidor
-      const response = await Axios.post("http://localhost:3002/usuarios", { username, password });
+      const response = await Axios.post("http://localhost:3002/login", { username, password });
       
       // Almacena el token de sesión en localStorage
       localStorage.setItem('token', response.data.token);
       
       // Inicio de sesión exitoso, redirige al usuario a la página deseada
-      navigate(`/`);
+      navigate(`/home`);
     } catch (error) {
       console.error(error);
       // Muestra un mensaje de error al usuario si las credenciales son inválidas
@@ -64,5 +64,6 @@ function Login() {
 }
 
 export default Login;
+
 
 

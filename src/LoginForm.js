@@ -56,7 +56,7 @@ function LoginForm() {
       limpiarCampos();
       Swal.fire({
         title: "<strong>Registro Exitoso</strong>",
-        html: `<i>El estudiante <strong>${nombres}</strong> fue registrado con éxito </i>`,
+        html: `<i>El estudiante <strong>${nombres} ${apellidoPaterno} ${apellidoMaterno}</strong> fue registrado con éxito </i>`,
         icon: 'success',
         timer: 3000
       });

@@ -9,6 +9,7 @@ import Home from './components/Home';
 import Registro2 from './components/Registro2';
 import Atrasos from './components/Atrasos';
 import Apoderado from './components/Apoderados';
+import ProtectedRoutes from './utils/ProtectedRoutes';
 
 // Componente Footer que se mostrará solo en la página principal
 function MainFooter() {
@@ -21,6 +22,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route element ={<ProtectedRoutes/>}/>
         <Route path="/loginform" element={<LoginForm />} />
         <Route path="/home" element={<Home />} />
         <Route path="/registro2" element={<Registro2 />} />

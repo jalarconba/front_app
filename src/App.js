@@ -22,6 +22,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Login />} />
+        <MainFooter /> {/* Mostrar el footer en todas las rutas */}
         <Route element ={<ProtectedRoutes/>}/>
         <Route path="/loginform" element={<LoginForm />} />
         <Route path="/home" element={<Home />} />
@@ -29,7 +30,7 @@ function App() {
         <Route path="/atrasos" element={<Atrasos />} />
         <Route path="/apoderados" element={<Apoderado />} />
       </Routes>
-      <MainFooter /> {/* Mostrar el footer en todas las rutas */}
+     
     </Router>
   );
 }

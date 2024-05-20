@@ -11,37 +11,27 @@ import Atrasos from './components/Atrasos';
 import Apoderado from './components/Apoderados';
 // import ProtectedRoutes from './utils/ProtectedRoutes';
 
-// Componente Footer que se mostrará solo en la página principal
-function MainFooter() {
-  return <Footer />;
-}
+import ProtectedRoutes from './utils/ProtectedRoutes';
 
 function App() {
+  const isAuthenticated = true; // Reemplaza esto con tu lógica de autenticación
+
   return (
     <Router>
       <Header />
       <Routes>
         <Route path="/" element={<Login />} />
-        <MainFooter /> {/* Mostrar el footer en todas las rutas */}
-        {/* <Route element ={<ProtectedRoutes/>}/> */}
         <Route path="/loginform" element={<LoginForm />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/registro2" element={<Registro2 />} />
-        <Route path="/atrasos" element={<Atrasos />} />
-        <Route path="/apoderados" element={<Apoderado />} />
+        <Route element={<ProtectedRoutes isAuthenticated={isAuthenticated} />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/registro2" element={<Registro2 />} />
+          <Route path="/atrasos" element={<Atrasos />} />
+          <Route path="/apoderados" element={<Apoderado />} />
+        </Route>
       </Routes>
-     
+      <Footer />
     </Router>
   );
 }
 
 export default App;
-
-
-
-
-
-
-
-
-

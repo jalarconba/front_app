@@ -16,7 +16,7 @@ const Header = () => {
             <ul className="navbar-nav">
               <li className="nav-item">
                 <div className="card bg-primary">
-                  <Link className="nav-link text-light" to="/">PAGINA INICIO</Link>
+                  <Link className="nav-link text-light" to="/">HOME</Link>
                 </div>
               </li>
                <li className="nav-item">
@@ -26,15 +26,10 @@ const Header = () => {
               </li>
               <li className="nav-item">
                 <div className="card bg-primary">
-                  <Link className="nav-link text-light" to="/contact">CONTACTO</Link>
+                  <Link className="nav-link text-light" to="/contacto">CONTACTO</Link>
                 </div>
-              </li>
-              <li className="nav-item">
-                <div className="card bg-secondary">
-                  <Link className="nav-link text-light" to="/">CERRAR SESIÓN</Link>
-                </div>
-              </li>
-            </ul>
+                </li>
+               </ul>
           </div>
         </div>
       </nav>

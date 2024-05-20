@@ -10,6 +10,7 @@ import Registro2 from './components/Registro2';
 import Atrasos from './components/Atrasos';
 import Apoderado from './components/Apoderados';
 // import ProtectedRoutes from './utils/ProtectedRoutes';
+import Contacto from './components/Contacto';
 
 import ProtectedRoutes from './utils/ProtectedRoutes';
 
@@ -21,12 +22,16 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/loginform" element={<LoginForm />} />
-        <Route element={<ProtectedRoutes isAuthenticated={isAuthenticated} />}>
-          <Route path="/home" element={<Home />} />
-          <Route path="/registro2" element={<Registro2 />} />
-          <Route path="/atrasos" element={<Atrasos />} />
+        <Route path="/registro2" element={<Registro2 />} />
+        <Route path="/atrasos" element={<Atrasos />} />
+        <Route path="/contacto" element={<Contacto />} />
           <Route path="/apoderados" element={<Apoderado />} />
+        <Route element={<ProtectedRoutes isAuthenticated={isAuthenticated} />}>
+         
+          
+        
         </Route>
       </Routes>
       <Footer />

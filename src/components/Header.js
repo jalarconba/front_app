@@ -19,12 +19,7 @@ const Header = () => {
                   <Link className="nav-link text-light" to="/">PAGINA INICIO</Link>
                 </div>
               </li>
-              <li className="nav-item">
-                <div className="card bg-primary">
-                  <Link className="nav-link text-light" to="/login">LOGIN</Link>
-                </div>
-              </li>
-              <li className="nav-item">
+               <li className="nav-item">
                 <div className="card bg-primary">
                   <Link className="nav-link text-light" to="/home">VOLVER</Link>
                 </div>

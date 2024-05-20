@@ -3,7 +3,7 @@ import Axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Asistencia() {
-  const [id, setId] = useState("");
+
   const [rutAlumno, setRutAlumno] = useState("");
   const [nombreAlumno, setNombreAlumno] = useState("");   
   const [curso, setCurso] = useState("");  
@@ -12,8 +12,8 @@ function Asistencia() {
   const [alumnosList, setAlumnos] = useState([]);
 
   const addAttendance = () => {
-    Axios.post("http://localhost:3002/asistencia/create", {
-      id: id,
+    Axios.post("http://localhost:3002/atrasos/create", {
+      
       rut_alumno: rutAlumno, 
       nombre_alumno: nombreAlumno, 
       curso: curso,
@@ -52,10 +52,10 @@ function Asistencia() {
         <div className="card text-center">
           <div className="card-header">
             <h1>Control de Asistencia</h1>
-            <h3>Formulario de Registro de Asistencia</h3>
+            <h3>Formulario de Registro de Atrasos</h3>
           </div>  
 
-          <div className="card-body">
+          {/* <div className="card-body">
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">ID: </span>
               <input 
@@ -66,8 +66,8 @@ function Asistencia() {
                 placeholder="ID" 
                 aria-label="ID" 
                 aria-describedby="basic-ad" />
-            </div>
-
+            </div> */}
+            <div className="card-body">
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">Rut Alumno: </span>
               <input 

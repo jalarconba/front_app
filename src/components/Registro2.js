@@ -12,7 +12,7 @@ function Asistencia() {
   const [alumnosList, setAlumnos] = useState([]);
 
   const addAttendance = () => {
-    Axios.post("http://localhost:3002/atrasos/create", {
+    Axios.post("https://back-app-u8qv.onrender.com/atrasos/create", {
       
       rut_alumno: rutAlumno, 
       nombre_alumno: nombreAlumno, 
@@ -32,7 +32,7 @@ function Asistencia() {
   };
 
   const getAlumnos = () => {
-    Axios.get("http://localhost:3002/asistencia")
+    Axios.get("https://back-app-u8qv.onrender.com/alumnos")
       .then((response) => {
         setAlumnos(response.data);
       })
@@ -153,7 +153,14 @@ function Asistencia() {
                     <td>{val.curso}</td>
                     <td>{val.tipo_asistencia}</td>
                     <td>{val.fecha}</td>
-                  </tr>
+                  
+                  <td>
+                  <div className="btn-group" role="group" aria-label="Acciones">
+                    <button type="button" className="btn btn-primary">Editar</button>
+                    <button type="button" className="btn btn-danger">Eliminar</button>
+                  </div>
+                </td>
+                </tr>
                 ))}
               </tbody>
             </table>

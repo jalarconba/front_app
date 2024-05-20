@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Swal from "sweetalert2";
 
 function Apoderado() {
   const [rutAlumno, setRutAlumno] = useState("");
@@ -12,7 +13,7 @@ function Apoderado() {
   const [apoderadosList, setApoderadosList] = useState([]);
 
   const addApoderado = () => {
-    Axios.post("http://localhost:3002/apoderados/create", {
+    Axios.post("https://back-app-u8qv.onrender.com/apoderados", {
       rut_alumno: rutAlumno,
       rut_apoderado: rutApoderado,
       nombre_apoderado: nombreAp,
@@ -20,19 +21,24 @@ function Apoderado() {
       comuna: comuna,
       telefono: telefono,
     })
-      .then((response) => {
-        console.log("Respuesta del servidor al agregar:", response);
+      .then(() => {
         getApoderados();
-        alert("Apoderado Registrado");
+        limpiarCampos();
+        Swal.fire({
+          title: "<strong>Registro Exitoso</strong>",
+          html: `<i>El apoderado <strong>${nombreAp}</strong> fue registrado con éxito </i>`,
+          icon: 'success',
+          timer: 3000
+        });
       })
       .catch((error) => {
-        console.error("Error al agregar apoderado:", error);
+        console.error(error);
         alert("Error al registrar Apoderado");
       });
   };
 
   const getApoderados = () => {
-    Axios.get("http://localhost:3002/apoderados")
+    Axios.get("https://back-app-u8qv.onrender.com/apoderados")
       .then((response) => {
         setApoderadosList(response.data);
       })
@@ -45,6 +51,15 @@ function Apoderado() {
   useEffect(() => {
     getApoderados();
   }, []);
+
+  const limpiarCampos = () => {
+    setRutAlumno("");
+    setRutApoderado("");
+    setNombreAp("");
+    setDireccion("");
+    setComuna("");
+    setTelefono("");
+  };
 
   return (
     <div className="container">
@@ -117,7 +132,8 @@ function Apoderado() {
             </div>
 
             <div className="input-group mb-3">
-              <span className="input-group-text" id="basic-addon1">Teléfono: </span>
+              <span className="input-group-text" id
+              ="basic-addon1">Teléfono: </span>
               <input 
                 type="text" 
                 onChange={(event) => setTelefono(event.target.value)} 
@@ -144,6 +160,7 @@ function Apoderado() {
                   <th scope="col">Dirección</th>
                   <th scope="col">Comuna</th>
                   <th scope="col">Teléfono</th>
+                  <th scope="col">Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -156,6 +173,12 @@ function Apoderado() {
                     <td>{val.direccion}</td>
                     <td>{val.comuna}</td>
                     <td>{val.telefono}</td>
+                    <td>
+                      <div className="btn-group" role="group" aria-label="Acciones">
+                        <button type="button" className="btn btn-primary">Editar</button>
+                        <button type="button" className="btn btn-danger">Eliminar</button>
+                      </div>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -168,3 +191,4 @@ function Apoderado() {
 }
 
 export default Apoderado;
+

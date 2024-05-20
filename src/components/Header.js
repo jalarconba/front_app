@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Tab from './Tabs';
+
 
 const Header = () => {
   return (
@@ -39,7 +39,7 @@ const Header = () => {
         </div>
       </nav>
       <h2 className="text-center mb-3">Sistema de Registro de Asistencia Escolar</h2>
-      {/* <Tab /> */}
+    
     </header>
   );
 };

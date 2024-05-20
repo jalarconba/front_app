@@ -39,7 +39,7 @@ const Header = () => {
         </div>
       </nav>
       <h2 className="text-center mb-3">Sistema de Registro de Asistencia Escolar</h2>
-      <Tab />
+      {/* <Tab /> */}
     </header>
   );
 };

@@ -12,7 +12,7 @@ const Home = () => {
           <Link to="/loginform" className="btn btn-primary btn-lg">Registro Alumnos</Link>
           <Link to="/registro2" className="btn btn-primary btn-lg">Registro Asistencia</Link>
           <Link to="/atrasos" className="btn btn-primary btn-lg">Registro Atrasos</Link>
-          <Link to="/datos-apoderados" className="btn btn-primary btn-lg">Datos Apoderados</Link>
+          <Link to="/apoderados" className="btn btn-primary btn-lg">Datos Apoderados</Link>
         </div>
       </div>
     </div>

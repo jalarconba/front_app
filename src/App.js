@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Registro2 from './components/Registro2';
 import Atrasos from './components/Atrasos';
+import Apoderado from './components/Apoderados';
 
 // Componente Footer que se mostrará solo en la página principal
 function MainFooter() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/registro2" element={<Registro2 />} />
         <Route path="/atrasos" element={<Atrasos />} />
+        <Route path="/apoderados" element={<Apoderado />} />
       </Routes>
       <MainFooter /> {/* Mostrar el footer en todas las rutas */}
     </Router>
